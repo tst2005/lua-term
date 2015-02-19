@@ -1,3 +1,3 @@
 return {
-	isatty = function(fd) return true end
+	isatty = function(fd) return "isatty is faked" end,
 }
