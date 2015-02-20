@@ -18,7 +18,12 @@
 -- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 -- THE SOFTWARE.
 
-local term    = require 'term.core'
+--local term    = require 'term.core'
+local term
+if not pcall(require, 'term.core') then
+	-- fallback
+	term = require 'term.corefallback'
+end
 local sformat = string.format
 local iotype  = io.type
 local stdout  = io.stdout

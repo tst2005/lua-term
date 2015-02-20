@@ -18,10 +18,16 @@
 -- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 -- THE SOFTWARE.
 
-local term = require 'term.core'
+--local term = require 'term.core'
+local term                                                                                                                                                                                       
+if not pcall(require, 'term.core') then                                                                                                                                                          
+	-- fallback
+	term = require 'term.corefallback'
+end
 
 local cursor = {
   ['goto'] = term.maketermfunc '%d;%dH',
+  goTo     = term.maketermfunc '%d;%dH',
   goup     = term.maketermfunc '%d;A',
   godown   = term.maketermfunc '%d;B',
   goright  = term.maketermfunc '%d;C',
