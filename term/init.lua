@@ -21,8 +21,12 @@
 --local term    = require 'term.core'
 local term
 if not pcall(require, 'term.core') then
-	-- fallback
-	term = require 'term.corefallback'
+	local corefallback = require 'term.corefallback'
+	if not corefallback.allow then
+		error("term.core not available (and term.fakecore is not allowed)", 2)
+	end
+	-- use fallback
+	term = corefallback
 end
 local sformat = string.format
 local iotype  = io.type
